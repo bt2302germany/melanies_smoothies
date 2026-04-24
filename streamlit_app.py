@@ -2,8 +2,7 @@
 import streamlit as st
 #import statement
 from snowflake.snowpark.functions import col
-#Connection tabelle  fruits
-from snowflake.snowpark.context import get_active_session
+
 
 # Write directly to the app.
 st.title(f":cup_with_straw: Customize Your Smoothie!")
@@ -20,8 +19,8 @@ st.write("The name of our Smoothie will be:", name_on_order)
 from snowflake.snowpark.functions import col
 #Connection tabelle  fruits
 from snowflake.snowpark.context import get_active_session
-
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cxn.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 #multislelect
